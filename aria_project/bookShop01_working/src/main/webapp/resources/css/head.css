@@ -1,0 +1,49 @@
+/* ��ü�������� ������ ������ */
+	* {
+		margin: 0;
+		padding: 0;
+	}
+/* ul li�±׿� ����Ʈ ��Ÿ���� ���� */
+	ul li{
+		list-style: none;
+	}
+/* a�±׿� �ؽ�Ʈ ������ ���ְ� ������ #333 */
+	a {
+		text-decoration: none;
+		color:#333;
+	}
+/* ����ũ�⸦ 16px ���� ��� �����ϰ� width���� 700, ���� 50��ŭ ������ #ccc, ���ڻ��� ������, ���γ���50px
+menu�ڽ� �������, ���ڰ�� ���� */
+	#menu  {
+		width:700px;
+		height:50px;
+		background: #ffffff;
+		color:black;
+		line-height: 50px; 
+		margin:0px 300px;
+		text-align: center;
+		position: relative;
+		z-index: 1000;
+		box-sizing : inherit;
+	}
+
+/* menu�±� �ڽ��� ul�� �ڽ� li�� �������İ� ���� 140���� */
+	#menu > ul > li {
+		float:left;
+		width:140px;
+		position:relative;
+		font-size: 20px;
+		padding : 10px
+	}
+	#menu > ul > li > ul {
+		width:130px;
+		display:none;
+		position: absolute;
+		font-size:14px;
+		background: white;
+		border: 1px solid green;
+		border-top: none;
+	}
+	#menu > ul > li:hover > ul {
+		display:block;
+	}

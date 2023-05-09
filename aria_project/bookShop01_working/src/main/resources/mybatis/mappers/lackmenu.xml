@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.lackmenu">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="lackmenuResult" type="MenuVO">
+		<result property="lm_id" column="lm_id" />
+		<result property="lm_menu" column="lm_menu" />
+		<result property="lm_menu_info" column="lm_menu_info" />
+		<result property="lm_price" column="lm_price" />
+		<result property="lm_creDate" column="lm_creDate" />
+		<result property="lm_fileName" column="lm_fileName" />
+		<result property="lm_ls_storeName" column="lm_ls_storeName" />
+		
+		
+	</resultMap>
+	
+	<insert id="insertNewMenu" parameterType="java.util.Map">
+	    <![CDATA[
+	        insert into lackstoremenudb (lm_id, lm_menu, lm_menu_info, lm_price, lm_fileName, lm_ls_storeName) 
+	        values(#{lm_id}, #{lm_menu}, #{lm_menu_info}, #{lm_price}, #{lm_fileName}, #{lm_ls_storeName})
+	     ]]>
+	</insert>
+	
+	<select id="selectNewlm_id" resultType="int"  >
+		<![CDATA[
+			SELECT  ifnull(max(lm_id), 0)+1 from lackstoremenudb
+		]]>
+	</select>	
+	
+	<select id="selectGoodsList" parameterType="String"  resultMap="lackmenuResult"   >
+        <![CDATA[
+      select * from lackstoremenudb where lm_ls_storeName=#{lm_ls_storeName}
+	    ]]>
+	</select>
+	
+	<select id="selectGoodsDetail" parameterType="String"  resultType="MenuVO"   >
+        <![CDATA[
+      select * from lackstoremenudb where lm_id=#{lm_id}
+	    ]]>
+	</select>
+	
+	<select id="selectGoodsList2" parameterType="String"  resultMap="lackmenuResult"   >
+        <![CDATA[
+      select * from lackstoremenudb where lm_ls_storeName=#{lm_ls_storeName}
+       ]]>
+   </select>
+	
+</mapper>

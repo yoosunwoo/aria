@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	  <definition name="/business/login" extends="baseLayout">
+         <put-attribute name="title" value="로그인 페이지" />
+         <put-attribute name="body" value="/WEB-INF/views/business/loginForm.jsp" />
+      </definition>  
+      
+      
+      <definition name="/member/memberFormSelect" extends="baseLayout">
+         <put-attribute name="title" value="회원 가입 선택 페이지" />
+         <put-attribute name="body" value="/WEB-INF/views/member/memberFormSelect.jsp" />
+      </definition>
+      
+      <definition name="/business/findid" extends="baseLayout">
+         <put-attribute name="title" value="아이디 찾기 페이지" />
+         <put-attribute name="body" value="/WEB-INF/views/business/findid.jsp" />
+      </definition>
+      
+      <definition name="/business/resultid" extends="baseLayout">
+         <put-attribute name="title" value="아이디 찾기 결과" />
+         <put-attribute name="body" value="/WEB-INF/views/business/resultid.jsp" />
+      </definition>
+      
+      <definition name="/business/pw_find" extends="baseLayout">
+         <put-attribute name="title" value="비밀번호 찾기 페이지" />
+         <put-attribute name="body" value="/WEB-INF/views/business/pw_find.jsp" />
+      </definition>
+      
+      <definition name="/business/pw_auth" extends="baseLayout">
+         <put-attribute name="title" value="비밀번호 찾기 페이지2" />
+         <put-attribute name="body" value="/WEB-INF/views/business/pw_auth.jsp" />
+      </definition>
+      
+      <definition name="/business/pw_new" extends="baseLayout">
+         <put-attribute name="title" value="비밀번호 찾기 페이지3" />
+         <put-attribute name="body" value="/WEB-INF/views/business/pw_new.jsp" />
+      </definition>
+      
+       
+  
+</tiles-definitions>
+
+

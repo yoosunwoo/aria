@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	  <definition name="/bupage/bupageMain" extends="baseLayout">
+         <put-attribute name="title" value="사업자 페이지" />
+         <put-attribute name="body" value="/WEB-INF/views/bupage/bupageMain.jsp" />
+      </definition>
+      
+      <definition name="/bupage/bupageSelectStore" extends="baseLayout">
+         <put-attribute name="title" value="사업자 매장 등록 페이지" />
+         <put-attribute name="body" value="/WEB-INF/views/bupage/bupageSelectStore.jsp" />
+      </definition>
+      
+      <definition name="/bupage/modbu" extends="baseLayout">
+       <put-attribute name="title" value="사업자정보수정" />
+       <put-attribute name="body" value="/WEB-INF/views/bupage/modbu.jsp" />
+     </definition>  
+  
+</tiles-definitions>
+
+

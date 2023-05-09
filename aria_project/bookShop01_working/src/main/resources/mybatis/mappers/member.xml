@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.member">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="memberResult" type="MemberVO">
+		<result property="me_id" column="me_id" />
+		<result property="me_pw" column="me_pw" />
+		<result property="me_ssn1" column="me_ssn1" />
+		<result property="me_ssn2" column="me_ssn2" />
+		<result property="me_name" column="me_name" />
+		<result property="me_gender" column="me_gender" />
+		<result property="me_age" column="me_age" />
+		<result property="me_age_range" column="me_age_range" />
+		<result property="me_email_yes" column="me_email_yes" />
+		<result property="me_email" column="me_email" />
+		<result property="me_email1" column="me_email1" />
+		<result property="me_email2" column="me_email2" />
+		<result property="me_sms_yes" column="me_sms_yes" />
+		<result property="me_phone1" column="me_phone1" />
+		<result property="me_phone2" column="me_phone2" />
+		<result property="me_phone3" column="me_phone3" />
+		<result property="me_zipcode" column="me_zipcode" />
+		<result property="me_address1" column="me_address1" />
+		<result property="me_address2" column="me_address2" />
+		<result property="me_lack_yes" column="me_lack_yes" />
+		<result property="me_care_yes" column="me_care_yes" />
+		<result property="me_female_yes" column="me_female_yes" />
+		<result property="me_creDate" column="me_creDate" />
+		<result property="me_deleted" column="me_deleted" />
+		<result property="me_cardNo" column="me_cardNo" />
+		<result property="me_balance" column="me_balance" />
+		
+		<result property="me_kakao_log_yes" column="me_kakao_log_yes" />
+		<result property="me_kakao_log_conDate" column="me_kakao_log_conDate" />
+		<result property="me_kakao_log_id" column="me_kakao_log_id" />
+		<result property="me_note" column="me_note" />
+	</resultMap>
+	
+	<select id="selectMemberList" resultMap="memberResult">
+		<![CDATA[
+			select * from memberdb
+		]]>
+	</select>
+	
+	<select id="confirmKakaoConnect" resultType="memberVO" parameterType="java.util.HashMap">
+		<![CDATA[
+			select * from memberdb
+			where me_kakao_log_id = #{id}
+		]]>
+	</select>
+	
+	<select id="confirmMember" resultType="memberVO" parameterType="java.util.HashMap">
+		<![CDATA[
+			select * from memberdb
+			where (me_name = #{nickname} and me_gender = #{gender}) or
+				me_email = #{email}
+		]]>
+	</select>
+	
+<!-- ////////////////////////////////////////////////////////////////////////// -->	
+
+	<select id="login" resultType="memberVO"  parameterType="java.util.Map"  >
+	    <![CDATA[
+			select * from memberdb 
+			 where me_id=#{me_id}
+			 and me_pw=#{me_pw}			
+			 
+		]]>
+	</select>
+	
+	<select id="pwfind"  parameterType="String" resultType="memberVO"  >
+	    <![CDATA[
+			select * from memberdb 
+			 where me_email=#{me_email}			
+			 
+		]]>
+	</select>
+	
+	<update id = "updatenewpwd" parameterType="java.util.HashMap">
+		update memberdb set me_pw=#{me_pw} where me_email= #{me_email}
+	</update>
+	
+	<select id="selectOverlappedID" parameterType="String" resultType="String">
+<!-- 	   select decode(count(*),1, 'true', 0, 'false') -->
+		select *
+	   from memberdb
+	   where me_id = #{me_id}
+	</select>
+	
+	<select id="selectOverlappedEmail" parameterType="String" resultType="String">
+<!-- 	   select decode(count(*),1, 'true', 0, 'false') -->
+		select me_email1
+	   from memberdb
+	   where me_email1 = #{me_email1}
+	</select>
+	
+	<select id="findid" resultType="memberVO"  parameterType="java.util.Map"  >
+	    <![CDATA[
+			select * from memberdb 
+			 where me_name=#{me_name}
+			 and me_email=#{me_email}			
+			 
+		]]>
+	</select>
+	
+	
+  <insert id="insertNewMember"  parameterType="MemberVO">
+  <![CDATA[
+    	insert into memberdb(me_id,	
+										me_pw,	
+										me_ssn1,	
+										me_ssn2,	
+										me_name,	
+										me_gender,	
+										me_age,	
+										me_age_range,	
+										me_email_yes,	
+										me_email,
+										me_email1,	
+										me_email2,	
+										me_sms_yes,	
+										me_phone1,	
+										me_phone2,	
+										me_phone3,	
+										me_zipcode,	
+										me_address1,	
+										me_address2,	
+										me_lack_yes,
+										me_care_yes,
+										me_female_yes,
+										me_deleted,
+										me_kakao_log_yes,
+										me_kakao_log_conDate,
+										me_kakao_log_id,	
+										me_note)
+							 values(#{me_id},
+									#{me_pw},
+                                 	#{me_ssn1},
+                                   	#{me_ssn2},
+                                   	#{me_name},
+                                    #{me_gender},
+                                    #{me_age},
+                                    #{me_age_range},
+                                    #{me_email_yes},
+                                    #{me_email},
+                                    #{me_email1},
+                                    #{me_email2},
+                                    #{me_sms_yes},
+                                    #{me_phone1},
+                                    #{me_phone2},
+                                    #{me_phone3},
+                                    #{me_zipcode},
+                                    #{me_address1},
+                                    #{me_address2},
+                                    #{me_lack_yes},
+                                    #{me_care_yes},
+                                    #{me_female_yes},
+                                    #{me_deleted},
+                                    #{me_kakao_log_yes},
+                                    #{me_kakao_log_conDate},
+                                    #{me_kakao_log_id},
+                                    #{me_note})
+                                    
+                                    
+                                  
+                                      
+   ]]>      
+  </insert>
+  
+<!-- /////////////////////////////////////////////////////////////////////// -->
+  
+  <insert id="insertMemberByKakao"  parameterType="MemberVO">
+  <![CDATA[
+    	insert into memberdb(me_id,	
+										me_pw,	
+										me_ssn1,	
+										me_ssn2,	
+										me_name,	
+										me_gender,	
+										me_age,	
+										me_age_range,	
+										me_email_yes,	
+										me_email,
+										me_email1,	
+										me_email2,	
+										me_sms_yes,	
+										me_phone1,	
+										me_phone2,	
+										me_phone3,	
+										me_zipcode,	
+										me_address1,	
+										me_address2,	
+										me_lack_yes,
+										me_care_yes,
+										me_female_yes,
+										me_deleted,
+										me_kakao_log_yes,
+										me_kakao_log_conDate,
+										me_kakao_log_id,	
+										me_note)
+							 values(#{me_id},
+									#{me_pw},
+                                 	#{me_ssn1},
+                                   	#{me_ssn2},
+                                   	#{me_name},
+                                    #{me_gender},
+                                    #{me_age},
+                                    #{me_age_range},
+                                    #{me_email_yes},
+                                    #{me_email},
+                                    #{me_email1},
+                                    #{me_email2},
+                                    #{me_sms_yes},
+                                    #{me_phone1},
+                                    #{me_phone2},
+                                    #{me_phone3},
+                                    #{me_zipcode},
+                                    #{me_address1},
+                                    #{me_address2},
+                                    #{me_lack_yes},
+                                    #{me_care_yes},
+                                    #{me_female_yes},
+                                    #{me_deleted},
+                                    #{me_kakao_log_yes},
+                                    #{me_kakao_log_conDate},
+                                    #{me_kakao_log_id},
+                                    #{me_note})
+                                    
+                                    
+                                  
+                                      
+   ]]>
+   </insert>
+	<update id="updateMemberByKakao"  parameterType="MemberVO">
+		<![CDATA[
+    	update memberdb set me_pw = #{me_pw},
+    						me_ssn1 = #{me_ssn1},
+    						me_ssn2 = #{me_ssn2},
+    						me_name = #{me_name},
+    						me_gender = #{me_gender},
+    						me_age = #{me_age},
+    						me_age_range = #{me_age_range},
+    						me_email_yes = #{me_email_yes},
+							me_email = #{me_email},
+							me_email1 = #{me_email1},
+							me_email2 = #{me_email2},
+							me_sms_yes = #{me_sms_yes},
+							me_phone1 = #{me_phone1},
+							me_phone2 = #{me_phone2},
+							me_phone3 = #{me_phone3},
+							me_zipcode = #{me_zipcode},
+							me_address1 = #{me_address1},
+							me_address2 = #{me_address2},
+							me_lack_yes = #{me_lack_yes},
+							me_care_yes = #{me_care_yes},
+							me_female_yes = #{me_female_yes},
+							me_deleted = #{me_deleted},
+							me_kakao_log_yes = #{me_kakao_log_yes},
+							me_kakao_log_conDate = #{me_kakao_log_conDate},
+							me_kakao_log_id = #{me_kakao_log_id},
+							me_note = #{me_note}
+						where me_id = #{me_id};                                
+		]]>
+	</update>
+</mapper>

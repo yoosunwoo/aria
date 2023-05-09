@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+  <typeAliases>
+<!--     <typeAlias type="company.aria.goods.vo.GoodsVO" alias="goodsVO" />
+    <typeAlias type="company.aria.goods.vo.ImageFileVO" alias="imageFileVO" />
+    <typeAlias type="company.aria.cart.vo.CartVO" alias="cartVO" />
+    <typeAlias type="company.aria.order.vo.OrderVO" alias="orderVO" />
+    <typeAlias type="company.aria.mypage.vo.MyPageVO" alias="mypageVO" /> -->
+    <typeAlias type="company.aria.member.vo.MemberVO" alias="MemberVO" />
+    <typeAlias type="company.aria.business.vo.BusinessVO" alias="BusinessVO" />
+    <typeAlias type="company.aria.common_api.vo.Common_api_VO" alias="Common_api_VO"/>
+    <typeAlias type="company.aria.helpcenter.InquiryVO" alias="InquiryVO"/>
+    <typeAlias type="company.aria.lack.vo.LaMenuVO" alias="MenuVO"/>
+    <typeAlias type="company.aria.lack.vo.LaCartVO" alias="CartVO"/>
+    <typeAlias type="company.aria.lack.vo.LaStoreVO" alias="StoreVO"/>
+    <typeAlias type="company.aria.lack.vo.LaOrderVO" alias="LaOrderVO"/>
+    
+  </typeAliases>
+</configuration>
+
+
+

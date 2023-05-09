@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.lackcart">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="lackcartResult" type="CartVO">
+		<result property="lc_id" column="lc_id" />
+		<result property="lc_me_id" column="lc_me_id" />
+		<result property="lc_ls_storeNo" column="lc_ls_storeNo" />
+		<result property="lc_lm_id" column="lc_lm_id" />
+		<result property="lc_qty" column="lc_qty" />
+		<result property="lc_creDate" column="lc_creDate" />
+	</resultMap>
+	
+	<resultMap id="lackcartResult2" type="java.util.Map">
+		<result property="lm_id" column="lm_id" />
+		<result property="lm_menu" column="lm_menu" />
+		<result property="lm_menu_info" column="lm_menu_info" />
+		<result property="lm_price" column="lm_price" />
+		<result property="lm_creDate" column="lm_creDate" />
+		<result property="lm_fileName" column="lm_fileName" />
+		<result property="lm_ls_storeName" column="lm_ls_storeName" />
+		<result property="lc_qty" column="lc_qty" />
+	</resultMap>
+	
+	<insert id="insertCart"  parameterType="java.util.HashMap">
+  		<![CDATA[
+      	 insert into lackcartdb(lc_lm_id,lc_qty,lc_me_id) values(#{lm_id},#{lc_qty},#{login_id})
+		]]>      
+  	</insert>
+	
+	<select id="selectCartlist" resultMap="lackcartResult2"  >
+		<![CDATA[
+			SELECT lackstoremenudb.*, lackcartdb.lc_qty
+			FROM lackstoremenudb
+			INNER JOIN lackcartdb ON lackstoremenudb.lm_id = lackcartdb.lc_lm_id
+			WHERE lackcartdb.lc_me_id=#{login_id}
+		]]>
+	</select>
+	
+	<delete id="deleteCartGoods" parameterType="int">
+       <![CDATA[
+         delete from lackcartdb
+         where lc_lm_id=#{lm_id}
+       ]]>
+   </delete>
+	
+	<delete id="deleteAll" parameterType="String">
+		<![CDATA[
+		delete from lackcartdb where lc_me_id = #{login_id}		
+		]]>
+	</delete>
+		
+</mapper>

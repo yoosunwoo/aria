@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.business">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="businessResult" type="BusinessVO">
+		<result property="bu_id" column="bu_id" />
+		<result property="bu_pw" column="bu_pw" />
+		<result property="bu_bn" column="bu_bn" />
+		<result property="bu_ssn1" column="bu_ssn1" />
+		<result property="bu_ssn2" column="bu_ssn2" />
+		<result property="bu_name" column="bu_name" />
+		<result property="bu_email_yes" column="bu_email_yes" />
+		<result property="bu_email" column="bu_email" />
+		<result property="bu_email1" column="bu_email1" />
+		<result property="bu_email2" column="bu_email2" />
+		<result property="bu_sms_yes" column="bu_sms_yes" />
+		<result property="bu_phone1" column="bu_phone1" />
+		<result property="bu_phone2" column="bu_phone2" />
+		<result property="bu_phone3" column="bu_phone3" />
+		<result property="bu_zipcode" column="bu_zipcode" />
+		<result property="bu_address1" column="bu_address1" />
+		<result property="bu_address2" column="bu_address2" />
+		<result property="bu_lack_yes" column="bu_lack_yes" />
+		<result property="bu_care_yes" column="bu_care_yes" />
+		<result property="bu_female_yes" column="bu_female_yes" />
+		<result property="bu_certified" column="bu_certified" />
+		<result property="bu_creDate" column="bu_creDate" />
+		
+		<result property="bu_kakao_log_yes" column="bu_kakao_log_yes" />
+		<result property="bu_kakao_log_conDate" column="bu_kakao_log_conDate" />
+		<result property="bu_kakao_log_id" column="bu_kakao_log_id" />
+		<result property="bu_deleted" column="bu_deleted" />
+		<result property="bu_note" column="bu_note" />
+		
+	</resultMap>	
+
+	<select id="login" resultType="businessVO"  parameterType="java.util.Map"  >
+	    <![CDATA[
+			select * from businessdb 
+			 where bu_id=#{bu_id}
+			 and bu_pw=#{bu_pw}			
+			 
+		]]>
+	</select>
+	
+	<select id="pwfind"  parameterType="String" resultType="businessVO"  >
+	    <![CDATA[
+			select * from businessdb 
+			 where bu_email=#{bu_email}			
+			 
+		]]>
+	</select>
+	
+	<update id = "updatenewpwd" parameterType="java.util.HashMap">
+		update businessdb set bu_pw=#{bu_pw} where bu_email= #{bu_email}
+	</update>
+	
+	<select id="selectOverlappedID" parameterType="String" resultType="String">
+<!-- 	   select decode(count(*),1, 'true', 0, 'false') -->
+		select *
+	   from businessdb
+	   where bu_id = #{bu_id}
+	</select>
+	
+	<select id="selectOverlappedEmail" parameterType="String" resultType="String">
+<!-- 	   select decode(count(*),1, 'true', 0, 'false') -->
+		select bu_email1
+	   from businessdb
+	   where bu_email1 = #{bu_email1}
+	</select>
+	
+	<select id="findid" resultType="businessVO"  parameterType="java.util.Map"  >
+	    <![CDATA[
+			select * from businessdb 
+			 where bu_name=#{bu_name}
+			 and bu_email=#{bu_email}			
+			 
+		]]>
+	</select>
+	
+	
+  <insert id="insertNewMember"  parameterType="memberVO">
+  <![CDATA[
+    	insert into businessdb(bu_id,	
+										bu_pw,	
+										bu_bn,	
+										bu_ssn1,	
+										bu_ssn2,	
+										bu_name,	
+										bu_email_yes,	
+										bu_email,
+										bu_email1,	
+										bu_email2,	
+										bu_sms_yes,	
+										bu_phone1,	
+										bu_phone2,	
+										bu_phone3,	
+										bu_zipcode,	
+										bu_address1,	
+										bu_address2,	
+										bu_lack_yes,
+										bu_care_yes,
+										bu_female_yes,
+										bu_certified,
+										bu_kakao_log_yes,
+										bu_kakao_log_conDate,
+										bu_kakao_log_id,	
+										bu_deleted,
+										bu_note)
+							 values(#{bu_id},
+									#{bu_pw},
+									#{bu_bn},
+                                 	#{bu_ssn1},
+                                   	#{bu_ssn2},
+									#{bu_name},
+                                    #{bu_email_yes},
+                                    #{bu_email},
+                                    #{bu_email1},
+                                    #{bu_email2},
+                                    #{bu_sms_yes},
+                                    #{bu_phone1},
+                                    #{bu_phone2},
+                                    #{bu_phone3},
+                                    #{bu_zipcode},
+                                    #{bu_address1},
+                                    #{bu_address2},
+                                    #{bu_lack_yes},
+                                    #{bu_care_yes},
+                                    #{bu_female_yes},
+                                    #{bu_certified},
+                                    #{bu_kakao_log_yes},
+                                    #{bu_kakao_log_conDate},
+                                    #{bu_kakao_log_id},
+                                    #{bu_deleted},
+                                    #{bu_note}
+                                    )
+                                  
+                                      
+   ]]>      
+  </insert>
+</mapper>

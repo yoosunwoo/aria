@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.bupage">
+	<insert id="addStore" parameterType="java.util.HashMap">
+		INSERT INTO lackstoredb(ls_bu_id,ls_storeName,ls_phone,ls_address_road,ls_address_jibun)
+		 VALUES(#{bu_id},
+		 (SELECT lsp_storeName FROM lackstorepublicdb WHERE lsp_storeName = #{mrhstNm}),
+		 (SELECT lsp_phoneNumber FROM lackstorepublicdb WHERE lsp_storeName = #{mrhstNm}),
+		 (SELECT lsp_address_road FROM lackstorepublicdb WHERE lsp_storeName = #{mrhstNm}),
+		 (SELECT lsp_address_jibun FROM lackstorepublicdb WHERE lsp_storeName = #{mrhstNm}))
+	</insert>
+	
+	<insert id="addAllStore" parameterType="java.util.List">
+		<foreach item="item" index="index" open=" " close="" separator=" " collection="list">
+		insert INTO lackstoredb(ls_bu_id,ls_storeName,ls_phone,ls_address_road,ls_address_jibun)
+		VALUES('${item.bu_id}',
+		 (SELECT lsp_storeName FROM lackstorepublicdb WHERE lsp_storeName = '${item.mrhstNm}'),
+		 (SELECT lsp_phoneNumber FROM lackstorepublicdb WHERE lsp_storeName = '${item.mrhstNm}'),
+		 (SELECT lsp_address_road FROM lackstorepublicdb WHERE lsp_storeName = '${item.mrhstNm}'),
+		 (SELECT lsp_address_jibun FROM lackstorepublicdb WHERE lsp_storeName = '${item.mrhstNm}'))</foreach>
+	</insert>
+	
+	<!-- <insert id="addAllStore" parameterType="java.util.List">
+		INSERT INTO lackstoredb(ls_bu_id,ls_storeName,ls_phone,ls_address_road,ls_address_jibun)
+		VALUES
+		<foreach item="item" index="index" open="(" close=")" collection="list">
+		'${item.bu_id}',
+		 (SELECT lsp_storeName FROM lackstorepublicdb WHERE lsp_storeName = '${item.mrhstNm}'),
+		 (SELECT lsp_phoneNumber FROM lackstorepublicdb WHERE lsp_storeName = '${item.mrhstNm}'),
+		 (SELECT lsp_address_road FROM lackstorepublicdb WHERE lsp_storeName = '${item.mrhstNm}'),
+		 (SELECT lsp_address_jibun FROM lackstorepublicdb WHERE lsp_storeName = '${item.mrhstNm}')
+		 </foreach>
+	</insert> -->
+	
+	<update id="updateMember"  parameterType="BusinessVO">
+		<![CDATA[
+    	update businessdb set bu_pw = #{bu_pw},	
+							bu_bn = #{bu_bn},	
+							bu_ssn1 = #{bu_ssn1},	
+							bu_ssn2 = #{bu_ssn2},	
+							bu_name = #{bu_name},	
+							bu_email_yes = #{bu_email_yes},	
+							bu_email = #{bu_email},
+							bu_email1 = #{bu_email1},	
+							bu_email2 = #{bu_email2},	
+							bu_sms_yes = #{bu_sms_yes},	
+							bu_phone1 = #{bu_phone1},	
+							bu_phone2 = #{bu_phone2},	
+							bu_phone3 = #{bu_phone3},	
+							bu_zipcode = #{bu_zipcode},	
+							bu_address1 = #{bu_address1},	
+							bu_address2 = #{bu_address2},	
+							bu_lack_yes = #{bu_lack_yes},
+							bu_care_yes = #{bu_care_yes},
+							bu_female_yes = #{bu_female_yes},
+							bu_certified = #{bu_certified},
+							bu_kakao_log_yes = #{bu_kakao_log_yes},
+							bu_kakao_log_conDate = #{bu_kakao_log_conDate},
+							bu_kakao_log_id = #{bu_kakao_log_id},	
+							bu_deleted = #{bu_deleted},
+							bu_note = #{bu_note}
+						where bu_id = #{bu_id};                                
+		]]>
+	</update>
+	
+	<delete id="deleteMember" parameterType = "String">
+   <![CDATA[
+      delete from businessdb where  bu_id= #{login_id}
+   ]]>
+   </delete>
+	
+
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	  <definition name="/lack/la-main" extends="baseLayout">
+         <put-attribute name="title" value="결식아동 사업소개" />
+         <put-attribute name="body" value="/WEB-INF/views/lack/lack_main/la-main.jsp" />
+      </definition>
+      
+      <definition name="/lack/la-store" extends="baseLayout">
+         <put-attribute name="title" value="결식아동 사업 매장 선택" />
+         <put-attribute name="body" value="/WEB-INF/views/lack/lack_main/la-store.jsp" />
+      </definition>
+      
+      <definition name="/lack/la-detail" extends="baseLayout">
+         <put-attribute name="title" value="매장 정보" />
+         <put-attribute name="body" value="/WEB-INF/views/lack/lack_main/la-detail.jsp" />
+      </definition>
+      
+      <definition name="/lackmenu/addMenu" extends="baseLayout">
+         <put-attribute name="title" value="메뉴 등록" />
+         <put-attribute name="body" value="/WEB-INF/views/lack/lack_business/bu-la-menu-add.jsp" />
+      </definition>
+      
+      <definition name="/lackmenu/la-menu" extends="baseLayout">
+         <put-attribute name="title" value="메뉴 조회" />
+         <put-attribute name="body" value="/WEB-INF/views/lack/lack_detail/la-menu.jsp" />
+      </definition>
+      
+      <definition name="/lackmenu/la-menu-detail" extends="baseLayout">
+         <put-attribute name="title" value="메뉴 조회" />
+         <put-attribute name="body" value="/WEB-INF/views/lack/lack_detail/la-menu-detail.jsp" />
+      </definition>
+      
+      <definition name="/lackcart/la-cart" extends="baseLayout">
+         <put-attribute name="title" value="장바구니" />
+         <put-attribute name="body" value="/WEB-INF/views/lack/lack_detail/la-cart.jsp" />
+      </definition>      
+  		
+      <definition name="/lackorder/addOrder" extends="baseLayout">
+         <put-attribute name="title" value="주문완료" />
+         <put-attribute name="body" value="/WEB-INF/views/lack/lack_detail/la-order.jsp" />
+      </definition>      
+  		
+</tiles-definitions>
+
+

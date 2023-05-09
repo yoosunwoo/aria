@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.common_api">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="Common_api_Result" type="Common_api_VO">
+		<result property="mrhstNm" column="mrhstNm" />
+		<result property="ctprvnNm" column="ctprvnNm" />
+		<result property="signguNm" column="signguNm" />
+		<result property="rdnmadr" column="rdnmadr" />		
+		<result property="lnmadr" column="lnmadr" />
+		<result property="latitude" column="latitude" />
+		<result property="longitude" column="longitude" />
+		<result property="phoneNumber" column="phoneNumber" />
+		<result property="referenceDate" column="referenceDate" />
+	</resultMap>	
+
+	<select id="selectLackStoreList" resultMap="Common_api_Result">
+	    <![CDATA[
+			select * from lackstoredb			
+		]]>
+	</select>
+	
+  <insert id="insertNewLackStore"  parameterType="Common_api_VO">
+  <![CDATA[
+    	insert ignore into lackstoredb(mrhstNm,
+    							mrhstCode,
+    							ctprvnNm,
+    							signguNm,
+    							rdnmadr,
+    							lnmadr,
+    							phoneNumber)
+							 values(#{mrhstNm},
+									#{mrhstCode},
+									#{ctprvnNm},
+                                 	#{signguNm},
+                                   	#{rdnmadr},
+                                   	#{lnmadr},
+                                    #{phoneNumber})
+                                  
+                                      
+   ]]>      
+  </insert>
+	<insert id="searchAllStore" parameterType="Common_api_VO">
+		insert into lackstorepublicdb(lsp_storeName,
+									lsp_city_do,
+									lsp_city_gu,
+									lsp_address_road,
+									lsp_address_jibun,
+									lsp_latitude,
+									lsp_longitude,
+									lsp_phoneNumber,
+									lsp_referenceDate) values(#{mrhstNm},
+															#{ctprvnNm},
+															#{signguNm},
+															#{rdnmadr},
+															#{lnmadr},
+															#{latitude},
+															#{longitude},
+															#{phoneNumber},
+															#{referenceDate})
+	</insert>
+
+</mapper>

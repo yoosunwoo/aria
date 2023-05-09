@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.lackorder">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="laorderResult" type="LaOrderVO">
+		<result property="lo_id" column="lo_id" />
+		<result property="lo_me_id" column="lo_me_id" />
+		<result property="lo_ls_storeName" column="lo_ls_storeName" />
+		<result property="lo_lm_id" column="lo_lm_id" />
+		<result property="lo_qty" column="lo_qty" />
+		<result property="lo_lm_menu" column="lo_lm_menu" />
+		<result property="lo_lm_price" column="lo_lm_price" />
+		<result property="lo_creDate" column="lo_creDate" />
+		<result property="lo_state" column="lo_state" />
+		<result property="lo_note" column="lo_note" />
+		<result property="lo_date" column="lo_date" />
+		<result property="lo_time" column="lo_time" />
+	</resultMap>
+	
+	<insert id="insertOrder" parameterType="LaOrderVO">
+		<![CDATA[
+			insert into lackorderdb(lo_me_id,
+			 						lo_ls_storeName,
+			 						lo_lm_id,
+			 						lo_qty,
+			 						lo_lm_menu,
+			 						lo_lm_price,
+			 						lo_state,
+			 						lo_note,
+			 						lo_date,
+			 						lo_time
+			 						)
+			 			   values(#{lo_me_id},
+			 					  #{lo_ls_storeName},
+			 					  #{lo_lm_id},
+			 					  #{lo_qty},
+			 					  #{lo_lm_menu},
+			 					  #{lo_lm_price},
+			 					  #{lo_state},
+			 					  #{lo_note},
+			 					  #{lo_date},
+			 					  #{lo_time}
+			 					  )
+			]]>
+	</insert>
+	
+</mapper>
